@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:853e5d459ddc3c19b72fdfd862ce8f50702797cd4aead6b9e2e8330b3bb74383",
+  "pageVersion": "sha256:34f291a8d72f5edc8b1b3b6f89ac1319b391baba773c641bef3d6d74a6777f1f",
   "claims": [
     {
       "id": "claim_244d2a0a18984ed9bfac7bdabf596487",
@@ -234,7 +234,7 @@
     },
     {
       "id": "claim_9ac5503138144eccab656b02d470574e",
-      "statement": "Installation writes a .openwiki-install.json ownership receipt recording the owning package, OpenWiki version, host target, installed MCP command, and per-file SHA-256 hashes; inspectInstallation uses it to classify a skill destination as not-installed, installed (intact), or modified.",
+      "statement": "Installation writes a .openwiki-install.json ownership receipt recording the owning package, OpenWiki version, an owners map (Partial<Record<HostTargetId, HostMcpServerCommand>>) tracking each host that owns the skill directory together with its exact MCP command, and per-file SHA-256 hashes. writeReceipt emits the legacy single-owner shape (target + mcpServerCommand) when exactly one owner exists and the owners map shape with two or more; readReceipt accepts either and receiptOwners normalizes both into the owners map the installer reasons about. inspectInstallation uses the receipt to classify a skill destination as not-installed, installed (intact for the requested target), or modified, and an intact directory owned only by other hosts reports not-installed while still returning its receipt so the joining host can add itself.",
       "evidence": [
         {
           "resource": "repo://src/integrations/install/skill-bundle.ts#L12-L43",
@@ -247,6 +247,10 @@
         {
           "resource": "repo://src/integrations/install/skill-bundle.ts#L200-L241",
           "version": "repo-lines-v1:sha256:553c93e7b60b9cb15fee6c177c013db28af1cac0ecd9adcac02858db51507f6a:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM2MDE5ZDRkZWE0YTg5ZWUzOTVkNWZkMjRiNmY5NmYzOWIyMzBmY2U0ODNiOWRhNmM2NWVjZDdhY2EyMmM0ZmYifQ"
+        },
+        {
+          "resource": "repo://src/integrations/install/skill-bundle.ts#L297-L316",
+          "version": "repo-lines-v1:sha256:ea8331e8400d47ef393ce681307dc1a1ae64c84124e437d29bc4e23705087119:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUwODM4OWY0OWY5MjM3MzUwNzQyOGExZGU2YTYyZDM1YzlhNjMyNmExN2ZkNjFlZDA3MGQzNzcyNTBkOGU2ZGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA1MzE0MThkZmUyYWMyMDdiZTk5M2FkZWFmNDc1MmYwYzJiMGI0NDVjMGVjNTBjMWMzZDU1NGMzNGZkYTUwYTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZiNTMzYzQzYTlhNWMzMjU2ZGJmNjNhNjdmZGMyZjliZjFhYWVmN2Y1NTMyMjNiZjA4ZWVmMzk0OTllYzBmNjMifQ"
         }
       ]
     },
@@ -266,19 +270,23 @@
     },
     {
       "id": "claim_c8da3e9530134d18b09962884935c7ec",
-      "statement": "A modified skill destination is refused on install unless --force, which preserves the prior skill as a timestamped backup; uninstall refuses to remove a modified skill or a modified/unmanaged config entry and cleans up empty skill parents.",
+      "statement": "A modified skill destination is refused on install unless --force, which preserves the prior skill as a timestamped backup; uninstall refuses to remove a modified skill or a modified/unmanaged config entry. On uninstall, ownersWithout drops the uninstalling host from the owners map: when other hosts still own the skill, uninstall rewrites the receipt to record only the remaining owners (collapsing to the single-owner shape when one is left) and leaves the skill directory in place rather than moving it to a cleanup backup; the skill is moved to a cleanup backup and empty skill parents pruned only when no other owner remains. Install merges the new owner into the existing receipt ({...receipt.owners, [target.id]: command}) rather than replacing it.",
       "evidence": [
         {
           "resource": "repo://src/integrations/install/installer.ts#L173-L178",
           "version": "repo-lines-v1:sha256:523d6896161e85bcfc770e5d3d80a952f1e0305215013eaa5999f49a0c770dc9:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTA0ZjhhMGM3ZTk1MWQwNDQwZGJkOTk4OWYzMjA3MDk1OGYzYWQ5YmRlYjdhZTQ0Y2UzNTNjYWYwYWRmMDg2MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjZmYmFmNzhkNmYyNzI0NzU5NDdmNjVkODdhNDJjNjI3Y2NlMGVhODg3MjA0ZTA5ZmY2MGMzODA2MGE2Y2UyNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWRjZjFiZDc3YjFjYWNmNzI4MDE0MmM1YmJhMjU4MmExNWYwM2ZjZjI4MjQ3ZDQ2NzRjNjViOTAzZWMzMzJmOSJ9"
         },
         {
+          "resource": "repo://src/integrations/install/installer.ts#L222-L224",
+          "version": "repo-lines-v1:sha256:38583074bfbf762d9c6327bc564a265916881e0501b11e538ad446a9276dd489:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTIyNDZjNjJlMDgzNDNjMGU2ZmFhYWY4NDQ3NDM1NDM3ZGVjMTEwMTQ4NjNmNTBkOGQzOWE5MDQ1ODVlOGRkZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjhkOTk5OGI3ZWY4MTY1NWUyMmRiNDc5YzViNWY3NGQzOTY3YTc3MmYxZWQ2OTQxYzE1YjlmNzJjYTM2ZGQ3NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzgxOTIzN2E4NmY3NmI4Yzg5MjQ0ZDRhOTY1N2FlZjIxNGRkOTk4ZmFlYWJkYzBmNDRkODhlMmE5ZWIyY2Q5MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTYxZmRmODYwYzk1NjgxM2NkYjZjOWQ5MjYxMjdhNjJmZjk5NjZlZjVjYmI5MDFkODQyNTE1NzIyMTQ5ZjA5NiJ9"
+        },
+        {
           "resource": "repo://src/integrations/install/installer.ts#L250-L352",
           "version": "repo-lines-v1:sha256:1315dd1f6d87f112985cdcad94b3a0dd23010e9e99ab73bc67e85ffba04347ff:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIxMjdhY2NkYTgxZjliYmExZmRmZGI4MTYwYzY2NzgzNGIwYjY5M2VlYmQ0MDljYWVjNDNjNTIyZGFlY2FlYzVkIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyN2U1Nzg4ZDVkOWQ3M2QyNGE4MWRiYzBhNWE3NGJmYTgyYzljM2IzYWY5OWU1MmFmNzk2ZTkwYjQ2OGE4YTNkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkYmMzYzg5YmNmNDE2YTY3MmQ5MWU2MTIyYmVlNTVmYmVhYmU5OWVmYmRiM2NmNTI5Y2E3OWM3YTZlZGFjN2E0IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI5OTVlYzJjOGIzNjMzMGExZTdmNjhmMGRiNTRhMzhjOGM1NjMzOTUxODYyNzRmOWYxNWQ5ODkyNGU2OTFiYjdmIn0"
         },
         {
-          "resource": "repo://src/integrations/install/installer.ts#L460-L472",
-          "version": "repo-lines-v1:sha256:55604e9597f3886369292897ed8989a79520fd92483db6dca42c4cd9f027cde5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhMGIxOWQ1ODZiMTQ3ZTc4MTQwNWE0NmUzODEzMWM2OTdjYTY3ZTQ2ZTRlMGI4MzliNmM3MGEzNTczZTU0MzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzMTBmYWJiNzdjNGQ4MGFjOTVhNzcwZWVjOWRhMDZlNjZhODYwZjRlNzU0ZTUzZjI0YTJmZmU4OWRkMGY3ZTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQyMDQ4NjllZjE3M2Y5OGNhZjg1YmY5ZjAzMWEyY2RkOWQxZmQ3OTg1MGJmZGY4MmMxNGNiN2Y3ZWE0OTVhNTQifQ"
+          "resource": "repo://src/integrations/install/installer.ts#L661-L676",
+          "version": "repo-lines-v1:sha256:4b33b1367b6c51c04542d57c4ef1208f6465eaf2f65cb3746cf7017cb93e1a66:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE5OThiNGY1OGMxNzBiYzA4M2VmOTIzMWMwMjQ5NDY3ZGNjMGM4MmRkNzVkZGYzYzQ3MzJhYWJmOTA0NWZlMTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRhZjAxYWI3ZDA5MjJlN2JhZTUzNzA3OWNlZGVkNGZmYjRiNTRkMDYyYzA3NjVkNWIyNGMwNjQ5MDVmYTQ0MDYifQ"
         }
       ]
     },
@@ -501,10 +509,32 @@
           "version": "repo-lines-v1:sha256:c4daf2b226a2936ad08e790a3d3b22be18d664bb25b27f78af6928d7a5777406:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBmODAzYmM3NTYyZDc0OTUzZmZlYmQ0MTQxMTRlYzQ0MTVlNWI1YjFmZmJkMmIzZTg4N2E2ZmU5YjBiZDI2NzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzMTFkNmIyZWU0ZDRlNTIyY2E2MTA0OGVhZDRkYWM2MWJkZGJmNzA0MDk4NzYxNzhiNDc5YzQ2ZDhlNDRlOTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFmZmJhYTBmNTBjZTg2OTNhODU2MGQ3NDdiOTI5NTM3MDYwYTRmNGJjZDdiNWMwODRlNGQyM2JiZWMzYzI3YTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI4YWY3YTdhOWE3NjY0YWRmZGYxZjAzZTI3ZWE1ZmY1YmQ5NWJkNGVhMTM1YzZjYTJmMjhjOWM4MGMzYTExYjIifQ"
         }
       ]
+    },
+    {
+      "id": "claim_cfb8e72a7bd041fc9368d8158295498b",
+      "statement": "IBM Bob and Codex share one skill directory (.agents/skills/openwiki) at both user and project scope, and Antigravity CLI's project-scope skill path is the same .agents/skills/openwiki, so a single installed skill can be co-owned by several hosts. installer.test.ts pins that HOST_TARGETS.bob.user.skillDirectory equals HOST_TARGETS.codex.user.skillDirectory while every other host's user skill directory is distinct, exercises install/uninstall/status across every target via describe.each, and pins co-ownership explicitly: installing Codex then Bob into the shared directory grows the receipt from a single-owner (target) shape to a two-owner (owners) map, uninstalling Codex collapses it back to Bob-only while leaving the skill in place, and only the final owner's uninstall removes the directory.",
+      "evidence": [
+        {
+          "resource": "repo://src/integrations/install/registry.ts#L11-L45",
+          "version": "repo-lines-v1:sha256:84b37877ec69d1d289743baa838d0a19e25f8eb41f512da6ba90acdf2ac757f5:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU1ZGU1YzI1ZTgyMmRiOWI3MmJmNDljMGE1MmMwM2E2ZmFkNmQ1OGVhMzJkZjY3YzdlODJkMGZiMjZkNTJlNDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg4NDQ5NDBjYjM5Zjg2NWNkYzRmYzU0YTM5MmM2N2NlZTU3ZjgzMzM2MmY2OTU1N2E4YjliMDlmZTNkODAxNTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjllOTU4ZGEwMzg2YmYxZDAzMjZkNDhlMmRmMjRlZTI5ZWJkYTcwYzBmNDE4ZDA3YjEwYzdlM2FkMGZmMDk2N2MifQ"
+        },
+        {
+          "resource": "repo://src/integrations/install/registry.ts#L125-L141",
+          "version": "repo-lines-v1:sha256:0f89f7fbe7fca0d55ea0ccb4bda5d4dd027e3f78d714b6d0c5e3ff0f39e25fd0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ0MmFiMWVkOGUwZjNmMTQ2MzgyYTNhMDUwZWQ1MWQ5ZmQwZWZiMDYxMWNkMWE4OGI2Yjk3MzEwMDA2ZDBiOTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFiZGQ1NzBmMWUwMmE2ZjVlOWVjYjhlYzg0YmQxZDA4ZDQyNDcxNGJlYTg3OTMxYzY3ZTM5MjkyZWU2ODMzMDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFiMzNjMzkxNjdmMWNlOWUyZTdkYzQyMzJkOTg0NWFkYzlmMDljMzRkMmRlNTRkZjU3ODA5YjAzMDNhZDAyNTcifQ"
+        },
+        {
+          "resource": "repo://test/integrations/installer.test.ts#L1006-L1069",
+          "version": "repo-lines-v1:sha256:446baaf1da36e027b354bca82a45c81ba1dda98e2c1008cef3a5312189e40951:eyJzZWxlY3RlZExpbmVDb3VudCI6NjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5NDM3OGY2YWM0YmI4ZjBiN2MxN2NiZTQzOWQ1NDU5ODU3MDYwNzQ4MmFiODk1ZTIyMjFlM2FiNmIzNjZhYTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2YTA5YTkzOTYxYjBlNmZkYWIyMzEzOGM3OWZhZDQyMjFmMDdlYWIzNWM4N2Q0YzU0YmMxNTI1MzIxMmQzZmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZmOGRmMWI0YzhlMmJhNmExMjBlN2M3OWQzYWJiNWUwOTNlZmZkM2M0Y2RhNzFiNjExMWJhMmU5ZjFjM2Y3Y2QifQ"
+        },
+        {
+          "resource": "repo://test/integrations/installer.test.ts#L531-L538",
+          "version": "repo-lines-v1:sha256:b09f0f483ac3689fddd532f89f5f4b45a83b085f134a527848ed998273def667:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmJiNTczNWU2NjRjMTVhYjY0NThmMDQ1NmNjZmM0ZThkNDgzOGVhYmY4NDFjYTM1YmE1NjlhMDk2M2VmZGE1NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2EzZTQ2Zjk0Mjc2YjZmNmY0ZWQxZjAyYWY3OGJlZjZhMmVlMWM0MzlkZDU1ODRiOTczOTQ4MzEzMjE0ZDJiNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2RiYTVkYWZjYWFjYjVhYzlhNzdkOTNmODMxMDA2N2YwMjA5Zjc0ODkzMWE3ZDg0ODU0YTY4NWVlMzc5NjRmZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDlhMzg4MDczNzM2NDdjMDZiYzcwNTNhNWUxNmI0NjU3OTgxODg5MjFjYjM2ODU1YWU0ZGY2MjIwM2U4NTZiYyJ9"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.2",
-    "at": "2026-10-13T08:15:00.712Z"
+    "at": "2026-10-29T08:07:17.223Z"
   }
 }

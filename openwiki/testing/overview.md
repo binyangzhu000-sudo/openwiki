@@ -30,6 +30,14 @@ sources:
     resource: repo://src/integrations/core/session-manager.ts
   - id: openwiki-source-eab9328975981f427c4218d0
     resource: repo://src/integrations/mcp/server.ts
+  - id: openwiki-source-ece93fbb8cb5e37f8a4eb963
+    resource: repo://src/visualize/client-lib.ts
+  - id: openwiki-source-610ff51ff8da46ab065496a5
+    resource: repo://src/visualize/client.ts
+  - id: openwiki-source-37e0e714b8257069ec052301
+    resource: repo://src/visualize/graph-types.ts
+  - id: openwiki-source-d92f623adbf6b31c3542d58d
+    resource: repo://src/visualize/graph.ts
   - id: openwiki-source-76702f01df0808033c14cf17
     resource: repo://test/agent/create-model-entra.test.ts
   - id: openwiki-source-6e76d6023798412a72871e94
@@ -64,8 +72,14 @@ sources:
     resource: repo://test/claims/core/mutations.test.ts
   - id: openwiki-source-b29e22b2bea9905b27e8e8e8
     resource: repo://test/claims/evidence/repository/resolver.test.ts
+  - id: openwiki-source-16c677920791580e6552cfb8
+    resource: repo://test/cli/components/chat.test.tsx
+  - id: openwiki-source-277e204ee3a395ea6b86cf14
+    resource: repo://test/cli/components/flush.ts
   - id: openwiki-source-61040321732e97cebb914633
     resource: repo://test/cli/components/markdown.test.tsx
+  - id: openwiki-source-968de2ac0f9dbd00818393cc
+    resource: repo://test/cli/components/wiki-workspace-manager.test.tsx
   - id: openwiki-source-f5f9f9512cc2874a9127f6e1
     resource: repo://test/cli/diagnostics/error-diagnostics.test.ts
   - id: openwiki-source-f66c47a0c6537f764ad36878
@@ -132,6 +146,8 @@ sources:
     resource: repo://test/visualize/client-interaction.test.ts
   - id: openwiki-source-1904eaebd82125a3a3881dac
     resource: repo://test/visualize/page.test.ts
+  - id: openwiki-source-527000b93bb371d57e38ce6d
+    resource: repo://test/visualize/visualize-client-lib.test.ts
   - id: openwiki-source-bfe55b1b277c3b3a7e1130e1
     resource: repo://test/visualize/visualize-graph.test.ts
   - id: openwiki-source-dbb4558a2e1f7159813c79c5
@@ -140,10 +156,10 @@ sources:
     resource: repo://tsconfig.json
   - id: openwiki-source-fbadcd8591b65031efaaedce
     resource: repo://vitest.config.ts
-generated: { by: "openwiki/0.7.2", at: "2026-10-13T08:15:00.712Z" }
+generated: { by: "openwiki/0.7.2", at: "2026-10-29T08:07:17.223Z" }
 verified:
   - by: openwiki/0.7.2
-    at: 2026-10-13T08:15:00.712Z
+    at: 2026-10-29T08:07:17.223Z
 ---
 
 # Testing Guide
@@ -165,7 +181,17 @@ while preserving complete failure output.
   exercised by rendering React components with `render` from
   `ink-testing-library` and asserting on the rendered frame (`lastFrame()`).
   These tests are the `.tsx` files under `test/cli/components/` and
-  `test/setup/credentials/`.
+  `test/setup/credentials/`. Because the CLI runs on React 19, components that
+  queue async work behind Ink's `act()` scheduler need that work to settle
+  before assertions; the shared `test/cli/components/flush.ts` helper exports
+  `flushInk`, which sets `IS_REACT_ACT_ENVIRONMENT=true` around an `act()` flush
+  (yielding once to the microtask queue plus one macrotask) so queued async work
+  settles before assertions. The async-path component tests —
+  `chat.test.tsx`, `wiki-workspace-manager.test.tsx`, and the
+  `test/setup/credentials/` component tests — drive their input/menu/credential
+  handlers through `flushInk`. This is the React 19 act-environment adaptation
+  for the Ink renderer; purely synchronous render tests such as
+  `primitives.test.tsx` need no flush.
 - **No global config beyond `vitest.config.ts`.** Test discovery keeps Vitest's
   defaults; the only tuning is one discovery exclusion and the coverage block
   (see below).
@@ -905,7 +931,14 @@ provider configs, and the OpenWiki home/connector path helpers.
 ### Visualize: page, graph, and client interaction
 
 `test/visualize/` mirrors `src/visualize/`. It splits the visualizer into the
-parts that can run in plain Node and the browser-only client glue that cannot:
+parts that can run in plain Node and the browser-only client glue that cannot.
+The browser graph types stay independent of the Node.js graph loader through a
+shared DOM-free type module: `src/visualize/graph-types.ts` declares the
+`WikiGraph`/`WikiNode`/`WikiEdge`/`WikiMeta` interfaces with no DOM imports, and
+both sides consume it — `src/visualize/graph.ts` imports and re-exports those
+types for the Node graph loader (so `visualize-graph.test.ts` imports from
+`graph.ts`), while `src/visualize/client.ts` and `src/visualize/client-lib.ts`
+import them directly for the browser/jsdom client.
 
 - `test/visualize/page.test.ts` asserts on the rendered `PAGE`/`STATIC_PAGE`
   HTML documents exported by `src/visualize/page.ts`. It pins the exact CDN
@@ -932,6 +965,12 @@ parts that can run in plain Node and the browser-only client glue that cannot:
   decoded (with malformed URL escapes not blocking valid links and a raw `%`
   preserved in filenames), encoded and Unicode links are deduplicated, and a
   symlink that escapes the wiki root is not followed.
+- `test/visualize/visualize-client-lib.test.ts` unit-tests the pure
+  `src/visualize/client-lib.ts` helpers (HTML escaping, palette color
+  assignment, `hexA` alpha expansion, `nodeRadius` scaling, `normalize`,
+  `matchesFilter`, `signature`, `stripFrontmatter`, and the
+  `shouldShowNodeLabel` declutter predicate) in plain Node — no jsdom needed,
+  because these helpers' types come from the DOM-free `graph-types.ts`.
 - `test/visualize/client-interaction.test.ts` is a `@vitest-environment jsdom`
   suite for the browser-only `src/visualize/client.ts` interaction wiring.
   Because `client.ts` touches the DOM and CDN globals at import time, the test

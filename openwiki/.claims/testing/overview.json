@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:3d859d80ac81edc50fec771067389f42d3840161ccd4d4cd28308c30d1356d9b",
+  "pageVersion": "sha256:9915a049950053778569ed5d04d6d8be3f00e79208c2b8e94b5ee90424f9551e",
   "claims": [
     {
       "id": "claim_fe4e1fc83ccd4d9290e42536a6e48032",
       "statement": "OpenWiki's test suite is run by Vitest, using the vitest runner and @vitest/coverage-v8 as dev dependencies rather than any separate test framework.",
       "evidence": [
         {
-          "resource": "repo://package.json#L111-L129",
-          "version": "repo-lines-v1:sha256:892c66e812a71ac6de003f776c7c9a84c8a85ec589e2fe369e1ad2d71c7b5d78:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkYzRkZTdlZDM1YTIzMzY0NTM5ODY0ZGFkYjkzOGI4NzIzMzM3OTE3OWQ2MjkyYjlmZjVmNjE5YTZjMTMxNjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM5NzYxMWQ0YWM4YTI1ODgyMDA5M2NjZmNhNDQ2MDNhODQ1YTE5OWJiMTkyNjNlNGY3MTE0NjNjNGNhM2U4M2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgwYzY4NTE2MDUyOWZmYWJjYzMyMTIxZThlNmU2MDM4OWY5NzgxYzM3OTg4NDAxNzAxY2MzNDkyOWU4ODc2ZjAifQ"
+          "resource": "repo://package.json#L111-L130",
+          "version": "repo-lines-v1:sha256:9941ad5691b096a9b389cafcf05de801eac32138d69aefa89c38e295c76ed64d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkYzRkZTdlZDM1YTIzMzY0NTM5ODY0ZGFkYjkzOGI4NzIzMzM3OTE3OWQ2MjkyYjlmZjVmNjE5YTZjMTMxNjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM5NzYxMWQ0YWM4YTI1ODgyMDA5M2NjZmNhNDQ2MDNhODQ1YTE5OWJiMTkyNjNlNGY3MTE0NjNjNGNhM2U4M2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgwYzY4NTE2MDUyOWZmYWJjYzMyMTIxZThlNmU2MDM4OWY5NzgxYzM3OTg4NDAxNzAxY2MzNDkyOWU4ODc2ZjAifQ"
         },
         {
           "resource": "repo://vitest.config.ts#L1-L18",
@@ -35,12 +35,12 @@
       "statement": "`pnpm test` is a three-stage gate that runs typecheck, then build, then the coverage run in order, so a change must pass type checking and a full build before its coverage test run.",
       "evidence": [
         {
-          "resource": "repo://package.json#L51-L68",
-          "version": "repo-lines-v1:sha256:8491e3c114277e0a92f9ec2d671e50a6a89da193a2882da50aefb62c74d4e1f0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2NDk4MmQ2M2VkNzM4NDY5MjY2NTE2OTU3MGRkYjMyNGRlOWEzZjlmYTFjZjBhYzI0OGY4MmI2ZjRkMjc4YWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhYTk4NzI5NTI4MGUxNTgzMzAyMDZmMGQzOTkzNjY3MWQ3NGRlYTkzOTY3Zjg4Yjk3YmQ5ZTVjMjdiODFmMTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3N2ZkMThmNzNmZTMyYzc3YzViY2IwMjJkN2QxNTQ5YmYyOGJhMzRlOWNlMzExNjhlOWNhYTkxMWFhZjg0NzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYzc1MzE1ZmFhNWRiY2FhYTNlZTM0MGQ0MjExOTZkNDQwN2FlMzAxMjgzOWE3ZWYzNjAzZTAwNGJkZDdiYmIifQ"
+          "resource": "repo://package.json#L46-L69",
+          "version": "repo-lines-v1:sha256:5c0ef6b7bdf389cd7ee85d990d5da978118c1eba985cc0d6a365165760cd6714:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0ODMzZDU5NDljMDNhNDBjYTk1MjQ5MTYxMGE2NjU5NjQ0YjNhYTQ2NjM2MmY3OTkwMjBkYmYxOTgxNTQ3ZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM1MDljNWYzMWE3NDlhMDNjM2RlNWNiYjEzYzUxYjM5YTNlN2MzNmIyZmRhZGY5Y2EwZDczYTQ0ZGMxODRhMDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlkOTM2NzBkN2E1NzY0MWUyMzg0NDFlMDAzZGM1NWNlMjYzN2I1YzBkNjY1MzQwZTJiN2M3MTY3OTBjMmNiZDgifQ"
         },
         {
           "resource": "repo://package.json#L67-L67",
-          "version": "repo-lines-v1:sha256:ecf358e5d1dcd7b8e12e0198b8288d6700e6c43f95514c419dea65197b35c457:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWNmMzU4ZTVkMWRjZDdiOGUxMmUwMTk4YjgyODhkNjcwMGU2YzQzZjk1NTE0YzQxOWRlYTY1MTk3YjM1YzQ1NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWNmMzU4ZTVkMWRjZDdiOGUxMmUwMTk4YjgyODhkNjcwMGU2YzQzZjk1NTE0YzQxOWRlYTY1MTk3YjM1YzQ1NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzY2MTJkNTJiYmQ1ZDk0NmViNDNlODMwNzBkZTM5YTM1OWYzMWVjZGNmN2UwMDJhZTI3NjViZWZmZjViMGY4MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzY0MzhmY2NhNjQwMjVkMjkyZDgyM2U2NTEzNWI3YjY0ODc4YjFiNzA5NTk3N2MwMjY3YjFiM2VlYmZlNTk2NiJ9"
+          "version": "repo-lines-v1:sha256:ecf358e5d1dcd7b8e12e0198b8288d6700e6c43f95514c419dea65197b35c457:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWNmMzU4ZTVkMWRjZDdiOGUxMmUwMTk4YjgyODhkNjcwMGU2YzQzZjk1NTE0YzQxOWRlYTY1MTk3YjM1YzQ1NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWNmMzU4ZTVkMWRjZDdiOGUxMmUwMTk4YjgyODhkNjcwMGU2YzQzZjk1NTE0YzQxOWRlYTY1MTk3YjM1YzQ1NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzY2MTJkNTJiYmQ1ZDk0NmViNDNlODMwNzBkZTM5YTM1OWYzMWVjZGNmN2UwMDJhZTI3NjViZWZmZjViMGY4MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDljNGU4NTU5YmNjNzA4MDljYzcwZGYzNzU5ZmY1ZjZjOGY2ZGI0ZDEzM2JmNzUyOGUxZWRmZDZmZjRkZjY3NyJ9"
         }
       ]
     },
@@ -50,7 +50,7 @@
       "evidence": [
         {
           "resource": "repo://package.json#L68-L68",
-          "version": "repo-lines-v1:sha256:caa987295280e158330206f0d39936671d74dea93967f88b97bd9e5c27b81f13:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2FhOTg3Mjk1MjgwZTE1ODMzMDIwNmYwZDM5OTM2NjcxZDc0ZGVhOTM5NjdmODhiOTdiZDllNWMyN2I4MWYxMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2FhOTg3Mjk1MjgwZTE1ODMzMDIwNmYwZDM5OTM2NjcxZDc0ZGVhOTM5NjdmODhiOTdiZDllNWMyN2I4MWYxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODAzMTBkMzIyZmQ2ZDcyYTk4NTgwOGNhYzY1OWUxMjZhYjhlZGIxMzdiOTZjYTc1YzJlN2ZhZGRhZmE1NjM1MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNjNzUzMTVmYWE1ZGJjYWFhM2VlMzQwZDQyMTE5NmQ0NDA3YWUzMDEyODM5YTdlZjM2MDNlMDA0YmRkN2JiYiJ9"
+          "version": "repo-lines-v1:sha256:775db911d2c9fca5df9efcc31127a0bc0b4353b254b3a33248b0157650ef561d:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzc1ZGI5MTFkMmM5ZmNhNWRmOWVmY2MzMTEyN2EwYmMwYjQzNTNiMjU0YjNhMzMyNDhiMDE1NzY1MGVmNTYxZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzc1ZGI5MTFkMmM5ZmNhNWRmOWVmY2MzMTEyN2EwYmMwYjQzNTNiMjU0YjNhMzMyNDhiMDE1NzY1MGVmNTYxZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODAzMTBkMzIyZmQ2ZDcyYTk4NTgwOGNhYzY1OWUxMjZhYjhlZGIxMzdiOTZjYTc1YzJlN2ZhZGRhZmE1NjM1MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDQ2ZDU0NTY3MDMzZmU4MjBiMTI1MDgxOTkzNjU2NmI0Y2VkOTVmNjAzODNhZDhhMzE5YTExNzdkZWU2YWUzNiJ9"
         }
       ]
     },
@@ -59,8 +59,12 @@
       "statement": "The `coverage` script runs `vitest run --coverage`, and `build` compiles both TypeScript projects and copies the visualize client assets.",
       "evidence": [
         {
-          "resource": "repo://package.json#L48-L51",
-          "version": "repo-lines-v1:sha256:94658e8402027c436a267f7e5157559f328f7f47e3c51d0ef565470f4a07fd4a:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2Q1NzMzNzAyNzI2ZDFhYTU2ZmVmOWFhYWFlYmUwMzM1NTU0MDg3ZWNiN2NiYzFmOWEzMmQ0ZjI5N2YyODM2OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjY0OTgyZDYzZWQ3Mzg0NjkyNjY1MTY5NTcwZGRiMzI0ZGU5YTNmOWZhMWNmMGFjMjQ4ZjgyYjZmNGQyNzhhYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTk5ZTViYmIxNjA0OTgwZjI0Nzg0MTM3YmQ0N2M4NzhiZTM1OTAxOGFjZDg1ZGIzZDhiNzI3MTZmZDRmNjZmMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWFmZThiMThmYmIxNjFlYjJjMTUyMjhjYWJjZGQwYmE0MmUyN2FlMDRjODJlZjkzNzFjNjk1YzY2YjQ4YzcxMSJ9"
+          "resource": "repo://package.json#L48-L48",
+          "version": "repo-lines-v1:sha256:0c86a5bae67106838a0c07436d27640151fffbe216ca5b9a8323709b998f2c3c:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGM4NmE1YmFlNjcxMDY4MzhhMGMwNzQzNmQyNzY0MDE1MWZmZmJlMjE2Y2E1YjlhODMyMzcwOWI5OThmMmMzYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGM4NmE1YmFlNjcxMDY4MzhhMGMwNzQzNmQyNzY0MDE1MWZmZmJlMjE2Y2E1YjlhODMyMzcwOWI5OThmMmMzYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTEyNDdhZDdlNjU0NDE1OGVmZDE0NGRmNTNjYzBhODc4MGVjYjA3OGQ4ZTNmNWIxODJmZDE4NWE0NzdjY2ZkNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDM0NDZjMjU1NmNmZWU4MjRlZWI0YTlhYWQ0MmQyZjgxNjYxY2I5MTY2NThjOWRjMjRiNjBkM2NiOTUwZmRhYiJ9"
+        },
+        {
+          "resource": "repo://package.json#L51-L51",
+          "version": "repo-lines-v1:sha256:f64982d63ed7384692665169570ddb324de9a3f9fa1cf0ac248f82b6f4d278ab:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjY0OTgyZDYzZWQ3Mzg0NjkyNjY1MTY5NTcwZGRiMzI0ZGU5YTNmOWZhMWNmMGFjMjQ4ZjgyYjZmNGQyNzhhYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjY0OTgyZDYzZWQ3Mzg0NjkyNjY1MTY5NTcwZGRiMzI0ZGU5YTNmOWZhMWNmMGFjMjQ4ZjgyYjZmNGQyNzhhYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDYwOWE4ZWM1OGQwNTMxODY2OGRhNWViMjM5ZDhjMTg4YTNjYjkwYjBmNDIxOWFjZWQ3Y2RlMjU3NTFhMjZmYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWFmZThiMThmYmIxNjFlYjJjMTUyMjhjYWJjZGQwYmE0MmUyN2FlMDRjODJlZjkzNzFjNjk1YzY2YjQ4YzcxMSJ9"
         }
       ]
     },
@@ -724,7 +728,7 @@
         },
         {
           "resource": "repo://package.json#L53-L55",
-          "version": "repo-lines-v1:sha256:f6e85f50fd57bdfb8c9721119b8200d11c04af8887dda86022388afd0a7fff9f:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDIzMmJlY2Q4YmM4MTE0ZTY1YjNiN2U3YjliMDk3NTRlZDJiMGQ4MmUzNmM3ZDY2ZTk4YTdkNmE4NmY0YWRkOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2VjYjI0ZjY2MmIyMmM3NDYxZjg5MTgxOTkzNTUwM2Q5NjczMGUxYjM2OWU2ZWJlYTA1ZTcwNzBmOWI4MTgwMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODJiNDlkNTE5ODhkM2Y5MGJlZGM0MTQ3Yzg0YTYzMjRkMTY1ZGYwY2FlM2Y4ODUxODk1NDlhZjE2YzVkY2NjNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGRmMThhZGViZjA3NzYxMWNkOThhMjhhOWYzYjMzMjQ4ODIzODczNDlhMDNmYmViYjM1YWI4Y2I0MDhhZWIzMSJ9"
+          "version": "repo-lines-v1:sha256:52e92d29a84d56a837f38f77732db762444a9c055170cd11d567da7a99966dce:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDIzMmJlY2Q4YmM4MTE0ZTY1YjNiN2U3YjliMDk3NTRlZDJiMGQ4MmUzNmM3ZDY2ZTk4YTdkNmE4NmY0YWRkOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTBkNmNiMzZjNWQ2YWVkMzU3NTNiMWYwMjA3NGY0ZTM4N2JkMGRhZDQ2NzBjZDBlY2ZmNGQ1NjBkZmIxNDE5ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODJiNDlkNTE5ODhkM2Y5MGJlZGM0MTQ3Yzg0YTYzMjRkMTY1ZGYwY2FlM2Y4ODUxODk1NDlhZjE2YzVkY2NjNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGRmMThhZGViZjA3NzYxMWNkOThhMjhhOWYzYjMzMjQ4ODIzODczNDlhMDNmYmViYjM1YWI4Y2I0MDhhZWIzMSJ9"
         }
       ]
     },
@@ -756,7 +760,7 @@
         },
         {
           "resource": "repo://package.json#L53-L55",
-          "version": "repo-lines-v1:sha256:f6e85f50fd57bdfb8c9721119b8200d11c04af8887dda86022388afd0a7fff9f:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDIzMmJlY2Q4YmM4MTE0ZTY1YjNiN2U3YjliMDk3NTRlZDJiMGQ4MmUzNmM3ZDY2ZTk4YTdkNmE4NmY0YWRkOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2VjYjI0ZjY2MmIyMmM3NDYxZjg5MTgxOTkzNTUwM2Q5NjczMGUxYjM2OWU2ZWJlYTA1ZTcwNzBmOWI4MTgwMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODJiNDlkNTE5ODhkM2Y5MGJlZGM0MTQ3Yzg0YTYzMjRkMTY1ZGYwY2FlM2Y4ODUxODk1NDlhZjE2YzVkY2NjNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGRmMThhZGViZjA3NzYxMWNkOThhMjhhOWYzYjMzMjQ4ODIzODczNDlhMDNmYmViYjM1YWI4Y2I0MDhhZWIzMSJ9"
+          "version": "repo-lines-v1:sha256:52e92d29a84d56a837f38f77732db762444a9c055170cd11d567da7a99966dce:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDIzMmJlY2Q4YmM4MTE0ZTY1YjNiN2U3YjliMDk3NTRlZDJiMGQ4MmUzNmM3ZDY2ZTk4YTdkNmE4NmY0YWRkOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTBkNmNiMzZjNWQ2YWVkMzU3NTNiMWYwMjA3NGY0ZTM4N2JkMGRhZDQ2NzBjZDBlY2ZmNGQ1NjBkZmIxNDE5ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODJiNDlkNTE5ODhkM2Y5MGJlZGM0MTQ3Yzg0YTYzMjRkMTY1ZGYwY2FlM2Y4ODUxODk1NDlhZjE2YzVkY2NjNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGRmMThhZGViZjA3NzYxMWNkOThhMjhhOWYzYjMzMjQ4ODIzODczNDlhMDNmYmViYjM1YWI4Y2I0MDhhZWIzMSJ9"
         }
       ]
     },
@@ -791,8 +795,8 @@
           "version": "repo-lines-v1:sha256:d98759bc2398df4be962470760708742e7620cd7255378a318c29f3cdaf6029c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzODRiZmRiMmRmMzgwYjY1NTdjYzdhNzFkMTY4OTE0MTViY2NhYTg3Njk5NDA2ZTIzNmY3NTJjNjQxNTM4OWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVkM2M5MTQ4OWE1ZmY5YzI2YzEwZDMwMzAzMzk2MjJhNDY5ZDAzYTVhMjY5YTBmNDExMGMxNTcwZWYxMTM1MmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjMWE1M2IyNzQ5OWFkYjE5N2IxNjk2ZmU2NjVlNzQyMmQzZTk3ZmM4OWZjNjE4YzhlYzE2MWJhZDc4ZDg2NDQifQ"
         },
         {
-          "resource": "repo://package.json#L46-L68",
-          "version": "repo-lines-v1:sha256:9eccf76d99849eb97c50d9f9a6b5704ab27b3faa8e5200cc29bf0885714bec19:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0ODMzZDU5NDljMDNhNDBjYTk1MjQ5MTYxMGE2NjU5NjQ0YjNhYTQ2NjM2MmY3OTkwMjBkYmYxOTgxNTQ3ZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhYTk4NzI5NTI4MGUxNTgzMzAyMDZmMGQzOTkzNjY3MWQ3NGRlYTkzOTY3Zjg4Yjk3YmQ5ZTVjMjdiODFmMTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY2MmRhZjMzM2RlNTUyNTNiZGVjYjRiODMwZTNkODZiODdhYTJhZGU4NzhhMTVlNTA0ZGIxYTg5ZTVmN2FjN2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ0NmQ1NDU2NzAzM2ZlODIwYjEyNTA4MTk5MzY1NjZiNGNlZDk1ZjYwMzgzYWQ4YTMxOWExMTc3ZGVlNmFlMzYifQ"
+          "resource": "repo://package.json#L46-L69",
+          "version": "repo-lines-v1:sha256:5c0ef6b7bdf389cd7ee85d990d5da978118c1eba985cc0d6a365165760cd6714:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0ODMzZDU5NDljMDNhNDBjYTk1MjQ5MTYxMGE2NjU5NjQ0YjNhYTQ2NjM2MmY3OTkwMjBkYmYxOTgxNTQ3ZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM1MDljNWYzMWE3NDlhMDNjM2RlNWNiYjEzYzUxYjM5YTNlN2MzNmIyZmRhZGY5Y2EwZDczYTQ0ZGMxODRhMDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlkOTM2NzBkN2E1NzY0MWUyMzg0NDFlMDAzZGM1NWNlMjYzN2I1YzBkNjY1MzQwZTJiN2M3MTY3OTBjMmNiZDgifQ"
         }
       ]
     },
@@ -1147,10 +1151,64 @@
           "version": "repo-lines-v1:sha256:a81e4abfa91a7d642230f877cd7e17db7dde0d58fd5521c9a608caed35e27200:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhlNDcwNmNjMWU0M2E1NGE4NDM0ZjA4OWM2NzhiMmIzYjY5OTRjNGM5MmEyNjdmNzg4YWI3ZjAzNWY4Y2MyNGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZkMGEwY2NiN2QyNWI1NmVlNzdjYTQzZjAxOTBkMDVhZjhhOTUyYzNjNWVjNDQ2Y2ZlZThjMzY5NDc1YzliMTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIxNmI5MTY1MzQwOTU5ODIwZDZmYjQ4OTZlYjlmYjNhNTYyMzIxZjUwZDdmOGZkMTcxNjIzM2RmMDRjZDhiMjAifQ"
         }
       ]
+    },
+    {
+      "id": "claim_89b943ad7b7946ef8de67f3ef5826ec7",
+      "statement": "The `test/cli/components/flush.ts` helper exports `flushInk`, the React 19 act-environment adaptation for the Ink renderer: it sets `IS_REACT_ACT_ENVIRONMENT=true` around an `act()` flush (a `setTimeout(resolve, 0)` inside `act`) so queued async work in Ink components settles before assertions, restoring the prior value in a `finally`. The async-path component tests (`chat.test.tsx`, `wiki-workspace-manager.test.tsx`, and the `test/setup/credentials/` component tests) drive their input/menu/credential handlers through it; purely synchronous render tests such as `primitives.test.tsx` need no flush.",
+      "evidence": [
+        {
+          "resource": "repo://test/cli/components/chat.test.tsx#L1-L32",
+          "version": "repo-lines-v1:sha256:96a55e8f68200d71439fd6270c518c8d1c18df296da40856c388577b99c6a2e3:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkODk3NjY5NGQwODZhZjMxYTIwODE3MWEwZDA0NGE1ZWVkOGJiNGExNjlmNTlmZWMzZmE1MTJmMDUyODA5YjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNlYmRjMjZjNDZlNDk3NzhjN2RkMmM4NDBhZGRkOGY4MTllZjcyYzI5ZTdiMGYyZGZkYzZlNDIxZGE2ZTI1ODQifQ"
+        },
+        {
+          "resource": "repo://test/cli/components/flush.ts#L1-L16",
+          "version": "repo-lines-v1:sha256:0c5825d039e3c2cfad8effb404cee77706bd28cbc9bc9fdbc8a7059c3e03e173:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkYTFiNzEwYmRjZWJmODBkZmY2MTVjMjU4NzFmNDgxMzk5Y2RjYjNkZjVlZjZhMTgwNTEzOTMwZmI3NjkwZDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://test/cli/components/wiki-workspace-manager.test.tsx",
+          "version": "repo-file-v1:sha256:3c29196615513f93d90ff65ee01ee4217ad9b380c3556470d8f0bd152e29acaa"
+        }
+      ]
+    },
+    {
+      "id": "claim_d89ab328d6f74f1e8a3f6b8f5976fdcc",
+      "statement": "The visualize subsystem keeps browser graph types independent of the Node.js graph loader through a shared DOM-free type module: `src/visualize/graph-types.ts` declares the `WikiGraph`/`WikiNode`/`WikiEdge`/`WikiMeta` interfaces with no DOM imports, `src/visualize/graph.ts` imports and re-exports those types for the Node graph loader (so `visualize-graph.test.ts` imports from `graph.ts`), and `src/visualize/client.ts` plus `src/visualize/client-lib.ts` import them directly for the browser/jsdom client.",
+      "evidence": [
+        {
+          "resource": "repo://src/visualize/client-lib.ts#L1-L1",
+          "version": "repo-lines-v1:sha256:e38826c9423f31f1d88a0595097b2cd22e7de0bfda6de6f030ed81cb63cfae13:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTM4ODI2Yzk0MjNmMzFmMWQ4OGEwNTk1MDk3YjJjZDIyZTdkZTBiZmRhNmRlNmYwMzBlZDgxY2I2M2NmYWUxMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTM4ODI2Yzk0MjNmMzFmMWQ4OGEwNTk1MDk3YjJjZDIyZTdkZTBiZmRhNmRlNmYwMzBlZDgxY2I2M2NmYWUxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzM2MGIwZGZiZThkNDQzODgzNTE5ZGRhODBiY2ZkZTQyMjUwMDFmYTEyODI4NDg1ZDQwM2I3MDYyOTc5MWIxOCJ9"
+        },
+        {
+          "resource": "repo://src/visualize/client.ts#L1-L1",
+          "version": "repo-lines-v1:sha256:ecd49b574746f5d087621fc91df0b85bd2f75bc8111a008d36c3d74bbdd77291:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWNkNDliNTc0NzQ2ZjVkMDg3NjIxZmM5MWRmMGI4NWJkMmY3NWJjODExMWEwMDhkMzZjM2Q3NGJiZGQ3NzI5MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWNkNDliNTc0NzQ2ZjVkMDg3NjIxZmM5MWRmMGI4NWJkMmY3NWJjODExMWEwMDhkMzZjM2Q3NGJiZGQ3NzI5MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODI3YmQ4ODM2MWVlZjE5Nzc1ZGJmYzY2ZDFiZmRjNmFjYjQzNWFiMzljMDVjZTNmMDhlMTY2OWE3NDg3ZDAzNyJ9"
+        },
+        {
+          "resource": "repo://src/visualize/graph-types.ts#L1-L127",
+          "version": "repo-lines-v1:sha256:80c37f9feb360eba1b6415c6ab341e03956e8edf7969a8f1de774da67ab80281:eyJzZWxlY3RlZExpbmVDb3VudCI6MTI3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlYWYyMmNmMDczMjU5MmMyNDcxNDFjYmU2MWVmYTExMDEyNjEyZjVhMzEyMmI5YWY5YmJhZjUyZjU3MjRkMTk0IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        },
+        {
+          "resource": "repo://src/visualize/graph.ts#L4-L6",
+          "version": "repo-lines-v1:sha256:c5998398c91226ebec939d0391db80434ecedfbef9b34403fef8c0f40f70e0a0:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjAyMGMyY2EyOTg2MjVlYmEwYzA3N2M4YmNiNWU1ODkzY2I4MmEwNDllYmY2ZDI4NzdkOGM4MzllZmYwYzgxMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzBiOTIwZTFlODdiMzUzODViNTgzZTk5Y2E4YmY2MTdlYzM2MTkxYmJkMTEwZDcxOGIyMjY5MGYyZGVmNjU2NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGZlNTg2NDMwNjYzYWQxZWY4OGI2MTA1YWFhMzQ5YWRkOWE3NDkwMTZhNjBlOTU1YTgyYzk5OGRmMzY0NmQzMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzljOTJlYWIxYzYyNWRkYzEyZTM1NDg4ODRjOGQ4YWRkNjAxZTc5NWJjYThlMzQ5MzNhYmYxZjhmMzE1NzliYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_36d03e6f67c0427ebf904fe627b4cb0c",
+      "statement": "`test/visualize/visualize-client-lib.test.ts` unit-tests the pure `src/visualize/client-lib.ts` helpers (HTML escaping, palette color assignment, `hexA` alpha expansion, `nodeRadius` scaling, `normalize`, `matchesFilter`, `signature`, `stripFrontmatter`, and the `shouldShowNodeLabel` declutter predicate) in plain Node with no jsdom, because those helpers' types come from the DOM-free `graph-types.ts`.",
+      "evidence": [
+        {
+          "resource": "repo://src/visualize/client-lib.ts#L1-L1",
+          "version": "repo-lines-v1:sha256:e38826c9423f31f1d88a0595097b2cd22e7de0bfda6de6f030ed81cb63cfae13:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTM4ODI2Yzk0MjNmMzFmMWQ4OGEwNTk1MDk3YjJjZDIyZTdkZTBiZmRhNmRlNmYwMzBlZDgxY2I2M2NmYWUxMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTM4ODI2Yzk0MjNmMzFmMWQ4OGEwNTk1MDk3YjJjZDIyZTdkZTBiZmRhNmRlNmYwMzBlZDgxY2I2M2NmYWUxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzM2MGIwZGZiZThkNDQzODgzNTE5ZGRhODBiY2ZkZTQyMjUwMDFmYTEyODI4NDg1ZDQwM2I3MDYyOTc5MWIxOCJ9"
+        },
+        {
+          "resource": "repo://test/visualize/visualize-client-lib.test.ts#L1-L13",
+          "version": "repo-lines-v1:sha256:18c55fc865ab381c05db7d01239e1f3752658cbb47fe76bcdbe53de2e9c02aa8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzYWE1NjY3MWY4Y2M0NDIzZThmN2U0NDJiMDk2YmVlNmQwOThlYjc5YTdhOWI1OTAwMmM5M2JlMWQ2ODA0NGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFkODVhMDM3MTIwYmNhZjc5MzlhYzM4YTZhZTYyMDNlMDMyMTgzMWFhYWYwZGIyMzdiZDJhMmRjMDFkNjliZGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQwZjBmMGNkYjQyOGVmZjAyZjE1NjZhNmJmMzllYjdiZTRiNDU1ODNiYzM0ZTQwMmE4MDNjNjZlNGQyYjYyNzQifQ"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.2",
-    "at": "2026-10-13T08:15:00.712Z"
+    "at": "2026-10-29T08:07:17.223Z"
   }
 }

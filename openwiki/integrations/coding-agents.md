@@ -1,7 +1,7 @@
 ---
 type: integration guide
 title: Coding-Agent Integrations (IBM Bob/Codex/Claude/OpenCode/Cursor/Kiro/Oh My Pi/Antigravity/Copilot)
-description: How OpenWiki runs inside a host coding agent through the ten-tool MCP page-job protocol, how install writes host config and the shared skill bundle, the Pi package extension, the AGENTS.md/CLAUDE.md managed markers, and the divided ownership between host research and OpenWiki finalization.
+description: How OpenWiki runs inside a host coding agent through the ten-tool MCP page-job protocol, how install writes host config and the shared skill bundle with multi-host skill-directory co-ownership, the Pi package extension, the AGENTS.md/CLAUDE.md managed markers, the divided ownership between host research and OpenWiki finalization, and the transactional install/uninstall.
 tags: [integrations, mcp, coding-agents, installation, page-job, host, copilot]
 sources:
   - id: openwiki-source-f317ee207e1653d2033c81a4
@@ -58,10 +58,12 @@ sources:
     resource: repo://src/integrations/pi/openwiki.ts
   - id: openwiki-source-349c953869b025f9d4935470
     resource: repo://src/platform/language.ts
-generated: { by: "openwiki/0.7.1", at: "2026-10-07T08:10:39.081Z" }
+  - id: openwiki-source-0d2125bc752003aab41c93c6
+    resource: repo://test/integrations/installer.test.ts
+generated: { by: "openwiki/0.7.2", at: "2026-10-29T08:07:17.223Z" }
 verified:
   - by: openwiki/0.7.2
-    at: 2026-10-13T08:15:00.712Z
+    at: 2026-10-29T08:07:17.223Z
 ---
 
 # Coding-Agent Integrations (IBM Bob/Codex/Claude/OpenCode/Cursor/Kiro/Oh My Pi/Antigravity/Copilot)
@@ -268,12 +270,17 @@ actor, per-scope skill directory and MCP config, and a documentation URL:
 
 - **IBM Bob** — user config at `.bob/settings/mcp.json` and project at
   `.bob/mcp.json` (`json`); skill under `.agents/skills/openwiki` at
-  both scopes; `producerActor` `bob`. IBM Bob additionally ships an agent manifest
+  both scopes; `producerActor` `bob`. Bob's skill directory is the **same**
+  `~/.agents/skills/openwiki` path Codex uses, so a Bob install joins a
+  Codex-owned (and vice versa) skill directory as a co-owner rather than
+  creating a fresh one (see [Skill-directory co-ownership](#skill-bundle-and-ownership-receipt)).
+  IBM Bob additionally ships an agent manifest
   at `integrations/openwiki/agents/bob.yaml` (`display_name`, `short_description`,
   `default_prompt`) consumed by the Bob host to surface the OpenWiki agent.
 - **Codex** — `.codex/config.toml` (`codex-toml`), skill under
   `.agents/skills/openwiki`, at both user and project scope; `producerActor`
-  `codex`.
+  `codex`. Like Bob, Codex co-owns the shared `.agents/skills/openwiki`
+  directory.
 - **Claude Code** — user config `.claude.json` and project config `.mcp.json`
   (both `json`), skill under `.claude/skills/openwiki`;
   `producerActor` `claude-code`.
@@ -299,7 +306,9 @@ actor, per-scope skill directory and MCP config, and a documentation URL:
 - **Antigravity CLI** — user config `.gemini/config/mcp_config.json` (`json`)
   with skill under `.gemini/antigravity-cli/skills/openwiki`; project scope uses
   `.agents/mcp_config.json` with skill under `.agents/skills/openwiki`;
-  `producerActor` `antigravity`.
+  `producerActor` `antigravity`. Antigravity's **project** skill path is the
+  same `.agents/skills/openwiki` Codex and Bob use, so a project-scope
+  Antigravity install joins that directory as a co-owner.
 - **GitHub Copilot CLI** — user config `.copilot/mcp-config.json` (`json`) with
   skill under `.copilot/skills/openwiki`; project scope uses `.github/mcp.json`
   with skill under `.github/skills/openwiki`; `producerActor` `copilot`. The
@@ -355,29 +364,60 @@ at the root. The bundle root is restricted to `SKILL.md`, an `agents/` tree
 (host agent manifests such as `agents/bob.yaml` and `agents/openai.yaml`), and a
 `references/` tree; any other path is rejected. On install, a
 `.openwiki-install.json` **receipt** records the owning package, OpenWiki
-version, host target, installed MCP command, and per-file hashes.
+version, an **owners map** — `Partial<Record<HostTargetId, HostMcpServerCommand>>`
+tracking each host that owns the skill directory together with that host's exact
+MCP server command — and per-file hashes.
+
+Because some hosts share one skill directory (IBM Bob and Codex both write
+`.agents/skills/openwiki`, and Antigravity CLI joins the same path at project
+scope), one installed skill can have **several owners**. The receipt records all
+of them, so a directory co-owned by Codex and Bob tracks each host's MCP command
+separately. `writeReceipt` keeps the install byte-for-byte stable for the
+common, single-owner case: when `owners` holds exactly one entry it emits the
+legacy shape (`target` + `mcpServerCommand`); with two or more it emits the
+`owners` map. `readReceipt` accepts either shape and `receiptOwners` normalizes
+both into the `owners` map the rest of the installer reasons about.
+
+Install **merges** the new host into the existing receipt rather than replacing
+it: the staged receipt is written with `{ ...inspection.receipt?.owners,
+[target.id]: mcpServerCommand }`, preserving every prior owner's command.
 `inspectInstallation` uses the receipt to classify a destination as
 `not-installed`, `installed` (intact), or `modified` (present but altered or
-unmanaged).
+unmanaged). An intact directory owned only by *other* hosts reports
+`not-installed` for this target while still returning its receipt, so the
+joining host can add itself without forcing the shared directory aside.
 
 ### Transactional install/uninstall
 
 `install` stages the bundle into a private sibling directory, verifies the staged
-copy matches the canonical inventory, writes the receipt, then commits by
-snapshotting the config, mutating it, moving any prior skill aside, and atomically
-moving the staged skill into place. On any failure it rolls back the config and
-prior skill; an incomplete rollback is surfaced as an `AggregateError`. When the
-installed state already matches the requested version, command, and files, it
-only reconciles config and reports whether anything changed. A `modified`
+copy matches the canonical inventory, writes the receipt (merging the new owner
+into any existing owners map), then commits by snapshotting the config,
+mutating it, moving any prior skill aside, and atomically moving the staged
+skill into place. On any failure it rolls back the config and prior skill; an
+incomplete rollback is surfaced as an `AggregateError`. When the installed
+state already matches the requested version, command, and files, it only
+reconciles config and reports whether anything changed. A `modified`
 destination is refused unless `--force`, which preserves the prior skill as a
 timestamped backup.
 
 `uninstall` refuses to remove a `modified` skill or a modified/unmanaged config
-entry, snapshots the config for rollback, removes the managed entry, moves the
-skill to a cleanup backup, and prunes now-empty skill parent directories.
-`status` reports `installed` only when both the skill and the config entry are
-intact, `modified` when either is partially present, and `unsupported` when the
-requested scope does not exist for the host.
+entry, snapshots the config for rollback, and removes the managed config entry.
+It then distinguishes co-ownership: `ownersWithout(receipt, target)` drops the
+uninstalling host from the owners map and returns the remaining owners. **When
+other hosts still own the skill** (`remainingOwners` is defined), uninstall
+rewrites the receipt to record only those remaining owners — collapsing back to
+the single-owner shape when exactly one is left — and **leaves the skill
+directory in place** rather than moving it to a cleanup backup. The skill is
+only **moved to a cleanup backup** (and the backup subsequently removed, with
+empty skill parent directories pruned) when **no other owner remains**. This is
+why Bob and Codex — both writing under `~/.agents` — can each be uninstalled
+without disturbing the other: uninstalling Codex from a co-owned directory
+leaves Bob installed, and only the final owner's uninstall removes the
+directory. If config mutation fails after the receipt has been rewritten, the
+config snapshot is restored. `status` reports `installed` only when both the
+skill and the config entry are intact for the requested target, `modified` when
+either is partially present, and `unsupported` when the requested scope does not
+exist for the host.
 
 ## User-level vs project scope
 
@@ -395,7 +435,10 @@ skill under `~/.agents` and the MCP entry under `~/.bob`, Codex writes under
 `~/.config/opencode` (OpenCode's global configuration directory on every
 supported platform), Cursor under `~/.cursor`, Kiro under `~/.kiro`, Oh My Pi
 under `~/.omp/agent` (default profile), Antigravity CLI under `~/.gemini`, and
-GitHub Copilot CLI under `~/.copilot`.
+GitHub Copilot CLI under `~/.copilot`. Bob and Codex both writing the shared
+skill under `~/.agents` is what makes their user-scope installations
+co-owners of one directory, governed by the [ownership receipt](#skill-bundle-and-ownership-receipt) and the
+[transactional co-ownership](#transactional-installuninstall) behavior above.
 
 ## AGENTS.md / CLAUDE.md managed markers
 
@@ -448,3 +491,17 @@ adapter; `protocol.test.ts` covers schema validation; `repository-root.test.ts`
 covers root resolution and its safety refusals; and `installer.test.ts`,
 `config-adapters.test.ts`, `skill.test.ts`, and `package-contents.test.ts` cover
 the transactional installer, config ownership, and packaged bundle.
+
+`installer.test.ts` exercises install/uninstall/status across **every** target
+via `describe.each(TARGETS)`. It pins the registry's ownership topology:
+`HOST_TARGETS.bob.user.skillDirectory` equals
+`HOST_TARGETS.codex.user.skillDirectory`, while every other host's user skill
+directory is distinct. It also pins co-ownership explicitly — "hosts sharing a
+skill directory install and uninstall independently" installs Codex then Bob
+into the same `~/.agents/skills/openwiki` directory, asserts the receipt grows
+from a single-owner (`target`) shape to a two-owner (`owners`) map and stays
+`installed` for both, then uninstalls Codex (receipt collapses back to Bob
+only, skill left in place) before uninstalling Bob (directory removed). A
+project-scope counterpart ("project-scope Antigravity and Codex share one
+skill") verifies the same co-ownership at project scope. `cli-dogfood.test.ts`
+drives the `openwiki integrations` commands end to end across all hosts.

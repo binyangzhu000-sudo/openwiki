@@ -11,8 +11,8 @@ tags:
   - filesystem-sandbox
   - langchain
 verified:
-  - by: openwiki/0.7.1
-    at: 2026-10-07T08:10:39.081Z
+  - by: openwiki/0.7.2
+    at: 2026-10-29T08:07:17.223Z
 sources:
   - id: openwiki-source-0ad86abe7202c4e4d6897f34
     resource: repo://src/agent/agent-backend.ts
@@ -54,7 +54,9 @@ sources:
     resource: repo://test/agent/entra-auth.test.ts
   - id: openwiki-source-d485c898eb60ebb173072eab
     resource: repo://test/agent/stream-redaction.test.ts
-generated: { by: "openwiki/0.7.1", at: "2026-10-07T08:10:39.081Z" }
+  - id: openwiki-source-9e751ab7019b5007ead755f4
+    resource: repo://test/agent/translation-middleware.test.ts
+generated: { by: "openwiki/0.7.2", at: "2026-10-29T08:07:17.223Z" }
 ---
 
 # Agent Runtime, Models, and Middleware
@@ -330,7 +332,7 @@ These boundaries exist because the agent may be prompt-injected via untrusted re
 Chat runs use no generation middleware. `createOpenWikiAgentGraph` mounts, in order:
 
 0. **Filesystem middleware** (personal `local-wiki` mode only). Personal runs have no shell tool regardless of command, so `createFilesystemMiddleware` is mounted over the composite backend with `AGENT_FILESYSTEM_PERMISSIONS` and the six filesystem tools (`ls`, `read_file`, `glob`, `grep`, `write_file`, `edit_file`). Repository runs do not mount this — they rely on the native page-job runner's own tool surface.
-1. **Translation middleware** (updates only, and only when a translation plan is resolved). Its `beforeAgent` hook brings every existing page into the run's target language before the agent starts, so an incremental update never leaves a mix of old and new language. `resolveTranslationPlan` returns a plan for every `update`: a real language switch (different primary subtag) retranslates every page, while a plain update only retries pages a prior run marked `openwiki_translation_pending`, and a sweep with nothing to do makes zero model calls. A single page's failure never aborts the run — the page keeps its previous language, is stamped pending for the next update, and the failure is reported through a sanitized warning sink. Translation model calls are tagged `langsmith:nostream` so their raw Markdown stays out of the token stream; one status line is shown instead.
+1. **Translation middleware** (updates only, and only when a translation plan is resolved). Its `beforeAgent` hook brings every existing page into the run's target language before the agent starts, so an incremental update never leaves a mix of old and new language. `resolveTranslationPlan` returns a plan for every `update`: a real language switch (different primary subtag) retranslates every page, while a plain update only retries pages a prior run marked `openwiki_translation_pending`, and a sweep with nothing to do makes zero model calls. A single page's failure never aborts the run — the page keeps its previous language, is stamped pending for the next update, and the failure is reported through a sanitized warning sink. `translatePage` treats a truncated translation as a failure rather than writing it: `translateMarkdown` throws when `stoppedAtOutputTokenLimit` detects the model stopped at its output-token limit (`finish_reason`/`stop_reason`/`stopReason`/`finishReason` of `length` or `max_tokens`, or the OpenAI Responses API's `incomplete_details.reason` of `max_output_tokens`), because writing a cutoff page would silently drop the rest of the page and clear its retry marker; the throw propagates to the per-page failure path, so the page keeps its previous language and is stamped pending for the next update, like any other translation failure. Translation model calls are tagged `langsmith:nostream` so their raw Markdown stays out of the token stream; one status line is shown instead.
 2. **OKF index middleware** (always, for non-chat runs). Its `beforeAgent` hook migrates existing pages to valid OKF front matter and snapshots their bodies; its `wrapToolCall` decorates successful write/edit results with a front-matter warning without catching tool throws (LangChain's tool node already converts a thrown tool error into a recoverable `ToolMessage`, so catching and rethrowing here would make every recoverable tool error fatal); and its `afterAgent` hook synchronizes the deterministic directory indexes and stamps code-owned `generated` provenance on every new or changed page, using the single run timestamp threaded through the run. A deferred `claimSources` projection supplied by a repository Claims runtime is read only during finalization, so it reflects every mutation accepted during the run.
 
 Both middleware hooks operate purely on file text read and written through the sandboxed docs-only backend; model output is never executed.

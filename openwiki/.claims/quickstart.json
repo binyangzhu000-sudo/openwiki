@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:afc5905a905c2cd4295833d317d6f12ca50ed3e695d510a046899308ead8dbf9",
+  "pageVersion": "sha256:f79bc619e508766b20c66da55023a860aaf7d9293bf5ef83780e4310667c6618",
   "claims": [
     {
       "id": "claim_5836585e22d244e79875961ea0a09258",
@@ -54,11 +54,15 @@
       "evidence": [
         {
           "resource": "repo://package.json#L46-L68",
-          "version": "repo-lines-v1:sha256:9eccf76d99849eb97c50d9f9a6b5704ab27b3faa8e5200cc29bf0885714bec19:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0ODMzZDU5NDljMDNhNDBjYTk1MjQ5MTYxMGE2NjU5NjQ0YjNhYTQ2NjM2MmY3OTkwMjBkYmYxOTgxNTQ3ZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhYTk4NzI5NTI4MGUxNTgzMzAyMDZmMGQzOTkzNjY3MWQ3NGRlYTkzOTY3Zjg4Yjk3YmQ5ZTVjMjdiODFmMTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY2MmRhZjMzM2RlNTUyNTNiZGVjYjRiODMwZTNkODZiODdhYTJhZGU4NzhhMTVlNTA0ZGIxYTg5ZTVmN2FjN2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYzc1MzE1ZmFhNWRiY2FhYTNlZTM0MGQ0MjExOTZkNDQwN2FlMzAxMjgzOWE3ZWYzNjAzZTAwNGJkZDdiYmIifQ"
+          "version": "repo-lines-v1:sha256:d329f37c29bb3929a0bc56bc2e5c86a217ad1eb1f57d0c15516efa5df6c2abd2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0ODMzZDU5NDljMDNhNDBjYTk1MjQ5MTYxMGE2NjU5NjQ0YjNhYTQ2NjM2MmY3OTkwMjBkYmYxOTgxNTQ3ZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3NWRiOTExZDJjOWZjYTVkZjllZmNjMzExMjdhMGJjMGI0MzUzYjI1NGIzYTMzMjQ4YjAxNTc2NTBlZjU2MWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM1MDljNWYzMWE3NDlhMDNjM2RlNWNiYjEzYzUxYjM5YTNlN2MzNmIyZmRhZGY5Y2EwZDczYTQ0ZGMxODRhMDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ0NmQ1NDU2NzAzM2ZlODIwYjEyNTA4MTk5MzY1NjZiNGNlZDk1ZjYwMzgzYWQ4YTMxOWExMTc3ZGVlNmFlMzYifQ"
         },
         {
-          "resource": "repo://package.json#L52-L66",
-          "version": "repo-lines-v1:sha256:70ba7bcbee8af573cd1150af6423f9c500b44d6298a807951068403f5b2c6e81:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxYzhmZGU5NTRiY2Y5ZTUwODk1MGQ4Yjk5OTQ3N2E5MDM1OTdiM2IwYWZlNWI5YTNhNDljNGE1NzVjOTM5ZTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhMzk5NTgwYmY5OTI5M2NlNDQwMWNlM2UzMmJhODE0ODljYTg5MWRkOWVjM2YyYjFmMjIyNzI4NmFkNjQ3ZmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAzNDQ2YzI1NTZjZmVlODI0ZWViNGE5YWFkNDJkMmY4MTY2MWNiOTE2NjU4YzlkYzI0YjYwZDNjYjk1MGZkYWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE4NjQ3NWExYjZhNWMwMDE2ZWViZTE4MWNkNzg3NGFiYjBmYWRmZDEzZDhjMTU1MTdhZmM4Mzg2OWRmNjI0ODIifQ"
+          "resource": "repo://package.json#L52-L52",
+          "version": "repo-lines-v1:sha256:41c8fde954bcf9e508950d8b999477a903597b3b0afe5b9a3a49c4a575c939e7:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDFjOGZkZTk1NGJjZjllNTA4OTUwZDhiOTk5NDc3YTkwMzU5N2IzYjBhZmU1YjlhM2E0OWM0YTU3NWM5MzllNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDFjOGZkZTk1NGJjZjllNTA4OTUwZDhiOTk5NDc3YTkwMzU5N2IzYjBhZmU1YjlhM2E0OWM0YTU3NWM5MzllNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDM0NDZjMjU1NmNmZWU4MjRlZWI0YTlhYWQ0MmQyZjgxNjYxY2I5MTY2NThjOWRjMjRiNjBkM2NiOTUwZmRhYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTJlOTJkMjlhODRkNTZhODM3ZjM4Zjc3NzMyZGI3NjI0NDRhOWMwNTUxNzBjZDExZDU2N2RhN2E5OTk2NmRjZSJ9"
+        },
+        {
+          "resource": "repo://package.json#L66-L66",
+          "version": "repo-lines-v1:sha256:8a399580bf99293ce4401ce3e32ba81489ca891dd9ec3f2b1f2227286ad647fe:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGEzOTk1ODBiZjk5MjkzY2U0NDAxY2UzZTMyYmE4MTQ4OWNhODkxZGQ5ZWMzZjJiMWYyMjI3Mjg2YWQ2NDdmZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGEzOTk1ODBiZjk5MjkzY2U0NDAxY2UzZTMyYmE4MTQ4OWNhODkxZGQ5ZWMzZjJiMWYyMjI3Mjg2YWQ2NDdmZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDM2YzliYzk1MDgzZjNmZGZlZGEyYzI1MDA5YmFlMWYzMTBlNjkyM2Y1ODE2M2ViNDljNWE0OGJkZDgwYTU0YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGIyZGU0YmE3NjRkNTRjOGRlM2Q2YjlmZDE3MjU4MzIwMDkzZDVlNDE3NjEwNzY4ODY3OTZmMjMwYzJmZjAyNyJ9"
         }
       ]
     },
@@ -68,7 +72,15 @@
       "evidence": [
         {
           "resource": "repo://package.json#L46-L68",
-          "version": "repo-lines-v1:sha256:9eccf76d99849eb97c50d9f9a6b5704ab27b3faa8e5200cc29bf0885714bec19:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0ODMzZDU5NDljMDNhNDBjYTk1MjQ5MTYxMGE2NjU5NjQ0YjNhYTQ2NjM2MmY3OTkwMjBkYmYxOTgxNTQ3ZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhYTk4NzI5NTI4MGUxNTgzMzAyMDZmMGQzOTkzNjY3MWQ3NGRlYTkzOTY3Zjg4Yjk3YmQ5ZTVjMjdiODFmMTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY2MmRhZjMzM2RlNTUyNTNiZGVjYjRiODMwZTNkODZiODdhYTJhZGU4NzhhMTVlNTA0ZGIxYTg5ZTVmN2FjN2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYzc1MzE1ZmFhNWRiY2FhYTNlZTM0MGQ0MjExOTZkNDQwN2FlMzAxMjgzOWE3ZWYzNjAzZTAwNGJkZDdiYmIifQ"
+          "version": "repo-lines-v1:sha256:d329f37c29bb3929a0bc56bc2e5c86a217ad1eb1f57d0c15516efa5df6c2abd2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0ODMzZDU5NDljMDNhNDBjYTk1MjQ5MTYxMGE2NjU5NjQ0YjNhYTQ2NjM2MmY3OTkwMjBkYmYxOTgxNTQ3ZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3NWRiOTExZDJjOWZjYTVkZjllZmNjMzExMjdhMGJjMGI0MzUzYjI1NGIzYTMzMjQ4YjAxNTc2NTBlZjU2MWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM1MDljNWYzMWE3NDlhMDNjM2RlNWNiYjEzYzUxYjM5YTNlN2MzNmIyZmRhZGY5Y2EwZDczYTQ0ZGMxODRhMDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ0NmQ1NDU2NzAzM2ZlODIwYjEyNTA4MTk5MzY1NjZiNGNlZDk1ZjYwMzgzYWQ4YTMxOWExMTc3ZGVlNmFlMzYifQ"
+        },
+        {
+          "resource": "repo://package.json#L48-L48",
+          "version": "repo-lines-v1:sha256:0c86a5bae67106838a0c07436d27640151fffbe216ca5b9a8323709b998f2c3c:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGM4NmE1YmFlNjcxMDY4MzhhMGMwNzQzNmQyNzY0MDE1MWZmZmJlMjE2Y2E1YjlhODMyMzcwOWI5OThmMmMzYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGM4NmE1YmFlNjcxMDY4MzhhMGMwNzQzNmQyNzY0MDE1MWZmZmJlMjE2Y2E1YjlhODMyMzcwOWI5OThmMmMzYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTEyNDdhZDdlNjU0NDE1OGVmZDE0NGRmNTNjYzBhODc4MGVjYjA3OGQ4ZTNmNWIxODJmZDE4NWE0NzdjY2ZkNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDM0NDZjMjU1NmNmZWU4MjRlZWI0YTlhYWQ0MmQyZjgxNjYxY2I5MTY2NThjOWRjMjRiNjBkM2NiOTUwZmRhYiJ9"
+        },
+        {
+          "resource": "repo://package.json#L67-L68",
+          "version": "repo-lines-v1:sha256:2f16383a38800fc722b7d5975161204a344f8fd21056751311da7f0680c9eaf5:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWNmMzU4ZTVkMWRjZDdiOGUxMmUwMTk4YjgyODhkNjcwMGU2YzQzZjk1NTE0YzQxOWRlYTY1MTk3YjM1YzQ1NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzc1ZGI5MTFkMmM5ZmNhNWRmOWVmY2MzMTEyN2EwYmMwYjQzNTNiMjU0YjNhMzMyNDhiMDE1NzY1MGVmNTYxZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzY2MTJkNTJiYmQ1ZDk0NmViNDNlODMwNzBkZTM5YTM1OWYzMWVjZGNmN2UwMDJhZTI3NjViZWZmZjViMGY4MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDQ2ZDU0NTY3MDMzZmU4MjBiMTI1MDgxOTkzNjU2NmI0Y2VkOTVmNjAzODNhZDhhMzE5YTExNzdkZWU2YWUzNiJ9"
         }
       ]
     },
@@ -122,12 +134,8 @@
     },
     {
       "id": "claim_b9320b4df81b4ddaba8fe4f27d1dfa33",
-      "statement": "OpenWiki can run inside a host coding agent (IBM Bob, Codex, Claude Code, OpenCode, Cursor, Kiro, Oh My Pi (`omp`), Antigravity CLI (`antigravity`), or GitHub Copilot CLI (`copilot`)) via a shared canonical skill and six MCP operations (`openwiki_begin`, `openwiki_submit_plan`, `openwiki_next_page`, optional on-demand `openwiki_inspect_page_claims`, `openwiki_submit_page`, `openwiki_finish`), where the host owns repository research, planning, and authoring while OpenWiki owns the durable queue, Claims reconciliation, source-drift handling, and deterministic finalization; the host submits only sparse Claim decisions per page and OpenWiki automatically retains issue-free Claims. Host-driven runs support repository code wikis only and use repository source and tests only, not connector context.",
+      "statement": "OpenWiki can run inside a host coding agent (IBM Bob, Codex, Claude Code, OpenCode, Cursor, Kiro, Oh My Pi (`omp`), Antigravity CLI (`antigravity`), or GitHub Copilot CLI (`copilot`)) via a shared canonical skill bundle and a ten-tool MCP surface: four read-only retrieval tools (`openwiki_list_workspaces`, `openwiki_list_wikis`, `openwiki_search`, `openwiki_read`) plus six generation lifecycle tools (`openwiki_begin`, `openwiki_submit_plan`, `openwiki_next_page`, optional on-demand `openwiki_inspect_page_claims`, `openwiki_submit_page`, `openwiki_finish`). The host owns repository research, planning, and authoring while OpenWiki owns the durable queue, Claims reconciliation, source-drift handling, and deterministic finalization; the host submits only sparse Claim decisions per page and OpenWiki automatically retains issue-free Claims. Host-driven runs support repository code wikis only and use repository source and tests only, not connector context.",
       "evidence": [
-        {
-          "resource": "repo://README.md#L101-L112",
-          "version": "repo-lines-v1:sha256:71b16257f7a8873ba4d2d212de0a83545c1ec6aeeae93db84dfcaa0ac4fb0db0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEyZjg3M2RjMGM3NzU5ZTNiMTRmNTcxNzM0YWJjYWNjYWZmNWY4NGE1ZmZmOGM4ODdmOTdkMTdhMjdhY2U5MmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM5Y2I0MDExMjA3OTA4NmM5ZWE0NmQzMmFhNjVmNjg3ZTkwODEzNmZmMTYwNTEzMDBiOWM0ZjFjYWQ0ODY2NzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMxZDUxZjFmNWYzZjYyMzg5YWVkNjU3NDNhMzNiOGZhNWNiZjcyZTgwY2Q0NzU3MGI4NjY5YjQ5Zjc0OWZkMDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNjOGVkNDk0ZWEzZDFlODE4MzM0YTU1M2JhNWNlMTFlNDBiNWI4MjVmOWRjMDRjN2YwM2VhYTU0ZGU4Y2UyZmQifQ"
-        },
         {
           "resource": "repo://src/integrations/core/protocol.ts#L14-L24",
           "version": "repo-lines-v1:sha256:8332762ee377128d1e39630e21589c1921507f26e5eb15b14cfd8855178f03ca:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVjYTFjYzFlNTYxMzUzNDQwNzU1NDZhZGE4NDg2Y2UzMzAwOTBkMjM0NzQwOTAzMmRjNTY1NzlhYTkwNWU1YjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3NzM0YzM3NzdlNGViMTQ0NjZlYWFkZjVjMzQyMWU5NTNmOGM3MmZhZTY0Yzc2NmNjZmFjOGY5NjIyN2RhMmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVhOTgyNDA0N2YxNjMwYjA3NjkwN2ViNGNlYWI3Yjg2YTAyOWNlYjczMGYxZTRiYWY2Nzg5ZGQ1MzZiMmU3NjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJkY2VhMjRkNzQ4MjM2Njk1YTJkYThhNDhlNmE1MjZhN2Y3M2Y2NWNmOTA0MWY3ODBjYjcyNjA0YzNkMjUwOGQifQ"
@@ -253,6 +261,6 @@
   ],
   "verification": {
     "by": "openwiki/0.7.2",
-    "at": "2026-10-13T08:15:00.712Z"
+    "at": "2026-10-29T08:07:17.223Z"
   }
 }

@@ -36,10 +36,10 @@ sources:
     resource: repo://src/integrations/install/registry.ts
   - id: openwiki-source-349c953869b025f9d4935470
     resource: repo://src/platform/language.ts
-generated: { by: "openwiki/0.7.2", at: "2026-10-13T08:15:00.712Z" }
+generated: { by: "openwiki/0.7.2", at: "2026-10-29T08:07:17.223Z" }
 verified:
   - by: openwiki/0.7.2
-    at: 2026-10-13T08:15:00.712Z
+    at: 2026-10-29T08:07:17.223Z
 ---
 
 # OpenWiki Quickstart
@@ -251,8 +251,10 @@ follow-up `openwiki --update` to reconcile the drift.
 
 OpenWiki can also run inside a host coding agent — IBM Bob, Codex, Claude Code,
 OpenCode, Cursor, Kiro, Oh My Pi (`omp`), Antigravity CLI (`antigravity`), or
-GitHub Copilot CLI (`copilot`) — instead of launching its own model. The integration shares one canonical skill
-and the same six MCP operations as native generation:
+GitHub Copilot CLI (`copilot`) — instead of launching its own model. The integration
+exposes ten MCP tools: four read-only retrieval tools (`openwiki_list_workspaces`,
+`openwiki_list_wikis`, `openwiki_search`, `openwiki_read`) that never start a run,
+plus the same six generation lifecycle operations native generation uses:
 `openwiki_begin`, `openwiki_submit_plan`, `openwiki_next_page`, optional on-demand
 `openwiki_inspect_page_claims`, `openwiki_submit_page`, and `openwiki_finish`. The
 host owns repository research, planning, and factual authoring; OpenWiki owns the
@@ -265,5 +267,10 @@ supported. The host submits only sparse Claim decisions for each page
 revisions and additions, `retractedClaimIds` for removals); OpenWiki
 automatically retains current issue-free Claims and makes the full Claim set
 available through on-demand `openwiki_inspect_page_claims` for broad rewrites.
-See [Coding-Agent Integrations](./integrations/coding-agents.md) for
-install scope, the host registry, and the host-driven lifecycle boundary.
+Install writes one shared canonical skill bundle plus a managed MCP server entry
+into each host's own config; some hosts share the same skill directory (IBM Bob,
+Codex, and project-scope Antigravity all co-own `.agents/skills/openwiki`), so one
+installed skill can have several owners tracked in an install receipt. See
+[Coding-Agent Integrations](./integrations/coding-agents.md) for install scope,
+the host registry, skill-directory co-ownership, and the host-driven lifecycle
+boundary.

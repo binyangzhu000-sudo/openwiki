@@ -3,9 +3,6 @@ type: integration
 title: Interactive Visualizer
 description: How the `openwiki visualize` command builds a link graph from wiki Markdown and OKF frontmatter, serves a live single-page reader over loopback HTTP, and exports a self-contained static site for hosting.
 tags: [visualizer, graph, static-export, cli, server, markdown-reader]
-verified:
-  - by: openwiki/0.7.2
-    at: 2026-10-13T08:15:00.712Z
 sources:
   - id: openwiki-source-5b54a58d1b51cd490b0e7162
     resource: repo://package.json
@@ -39,7 +36,10 @@ sources:
     resource: repo://test/visualize/visualize-client-lib.test.ts
   - id: openwiki-source-42403648c3f500ce06398039
     resource: repo://tsconfig.client.json
-generated: { by: "openwiki/0.5.2", at: "2026-09-22T08:09:45.637Z" }
+generated: { by: "openwiki/0.7.2", at: "2026-10-29T08:07:17.223Z" }
+verified:
+  - by: openwiki/0.7.2
+    at: 2026-10-29T08:07:17.223Z
 ---
 
 # Interactive Visualizer
@@ -248,7 +248,12 @@ The pure, DOM-independent helpers used by the client — `escapeHtml`,
 `colorsForTypes`, `nodeRadius`, `signature`, `matchesFilter`, `normalize`,
 `stripFrontmatter`, `hexA`, and `shouldShowNodeLabel` (with its
 `NodeLabelContext` interface) — live in `src/visualize/client-lib.ts` so they can
-be unit-tested directly without a browser. `shouldShowNodeLabel` decides whether
+be unit-tested directly without a browser. These helpers import their graph
+types (`WikiGraph`) type-only from `src/visualize/graph-types.ts`, and
+`graph-types.ts` itself carries no Node imports, so it compiles cleanly under both
+the server `tsconfig.json` and the DOM-lib `tsconfig.client.json` — the same
+shared type module the Node graph loader (`graph.ts`, which imports `node:fs`) and
+the browser client both reach for. `shouldShowNodeLabel` decides whether
 a node label should be painted on the canvas based on interaction context: when
 nothing is selected, only the hovered node's label shows; when a node is
 selected, the selected node plus its immediate neighbours show labels; unrelated
@@ -280,9 +285,16 @@ Markdown and rendering in its shipped typeface.
 
 The client TypeScript is compiled separately from the server code. The `build`
 script in `package.json` runs `tsc -p tsconfig.json`, then `tsc -p
-tsconfig.client.json` (which compiles `client.ts` and its imported `client-lib.ts`
-with DOM libs enabled), and finally `node scripts/copy-visualize-assets.cjs`. That
-last step exists because `styles.css` is a hand-authored asset TypeScript does not
+tsconfig.client.json` (which compiles `client.ts` and the modules it pulls in —
+`client-lib.ts` and `graph-types.ts` — with DOM libs enabled), and finally `node
+scripts/copy-visualize-assets.cjs`. The shared type contract between the two
+compilation projects is `src/visualize/graph-types.ts`: it declares `WikiMeta`,
+`WikiNode`, `WikiEdge`, and `WikiGraph` with no runtime code and no Node imports,
+so the browser client's graph types stay independent of the Node.js graph loader
+`graph.ts` (which imports `node:fs`/`node:path` and is therefore excluded from the
+DOM-lib client project). `graph.ts` only re-exports those types; `client.ts` and
+`client-lib.ts` import them type-only. That last step exists because `styles.css`
+is a hand-authored asset TypeScript does not
 emit: the copy script explicitly copies `src/visualize/styles.css` into
 `dist/visualize/styles.css` and fails the build if the source is missing, the
 `dist/visualize` directory does not exist (a sign the build did not run first), or
